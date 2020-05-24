@@ -1,0 +1,42 @@
+#top-bar {
+  min-height: 50px;
+  margin-top: 15px;
+
+  .site-title {
+    p {
+      font-size: 35px;
+    }
+
+    * {
+      float: left;
+      margin-left: 10px;
+    }
+
+    cursor: pointer;
+  }
+
+  ul.menu {
+    list-style-type: none;
+
+    :not(:first-child) {
+      margin-left: 50px;      
+    }
+
+    li {
+      cursor: pointer;
+      float: left;          
+      font-size: 20px;
+      padding-top: 10px;
+    }
+
+    :hover:not(.selected){
+      padding-top: 5px;
+    }
+
+    .selected {
+      //text-decoration: underline;
+      border-bottom: 1px solid;
+      padding-bottom: 5px;
+    }
+  }
+}
