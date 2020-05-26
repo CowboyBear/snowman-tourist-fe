@@ -8,10 +8,12 @@
     <div class="div col-8">
       <ul class="menu">
         <li routerLink="/locations" routerLinkActive="selected">Locations</li>
+        <li routerLink="/add-location" routerLinkActive="selected">Add new location</li>
       </ul>
     </div>
     <div class="col-2">
-      <div class="fb-login-button" data-size="large" data-button-type="continue_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false" data-width=""></div>
+      <div [hidden]="isUserAuthenticated" class="logout-button" (click)="btnLogin_Click()"><a>Login with Facebook</a></div>      
+      <div [hidden]="!isUserAuthenticated" class="logout-button" (click)="btnLogout_Click()"><a>Logout</a></div>
     </div>
   </div>
 </div>

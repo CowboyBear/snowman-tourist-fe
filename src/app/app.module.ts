@@ -8,18 +8,22 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LocationsPageComponent } from './components/locations-page/locations-page.component';
 import { LocationService } from './services/location.service'
 import { HttpClientModule } from '@angular/common/http';
+import { FacebookModule } from 'ngx-facebook';
+import { AddLocationComponent } from './components/add-location/add-location.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TopMenuComponent,
-    LocationsPageComponent
+    LocationsPageComponent,
+    AddLocationComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
-    HttpClientModule
+    HttpClientModule,
+    FacebookModule.forRoot()
   ],
   providers: [    
     LocationService
