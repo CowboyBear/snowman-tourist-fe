@@ -9,10 +9,17 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class LocationService {
+  
+  private readonly LOCATION_ENDPOINT = environment.apiUrl + '/location';
 
   constructor(private http: HttpClient) { }
 
   public get(): Observable<Array<Location>> {
-    return this.http.get<Array<Location>>(environment.apiUrl + '/location')
+    return this.http.get<Array<Location>>(this.LOCATION_ENDPOINT);
+  }
+
+
+  public post(formData: FormData): Observable<Location>{
+    return this.http.post<Location>(this.LOCATION_ENDPOINT, formData);
   }
 }

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { faMapMarkedAlt, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { FacebookService } from 'ngx-facebook';
+import { UserService } from 'src/app/services/user.service';
+import { SessionService } from 'src/app/services/session.service';
+import { User } from 'src/app/models/User';
 
 @Component({
   selector: 'app-top-menu',
@@ -10,34 +13,30 @@ import { FacebookService } from 'ngx-facebook';
 export class TopMenuComponent implements OnInit {
 
   public logoIcon: IconDefinition = faMapMarkedAlt;
-  public isUserAuthenticated: boolean = false;
+  public user: User;
 
-  constructor(private fb: FacebookService) { }
+  constructor(private fb: FacebookService, private userService: UserService, private sessionService: SessionService) { }
 
   ngOnInit() {
-    this.fb.getLoginStatus()
-      .then((loginStatus) => {
-        if (loginStatus.status === "connected") {
-          this.isUserAuthenticated = true;
-        }
-      })
-      .catch((error) => {
-        console.log("Error getting loginStatus: ", error);
-      });
-  }
+    this.user = this.sessionService.getUserFromSession();
+   }
 
   public btnLogin_Click(): void {
     this.fb.login()
-    .then(() => {
-      this.isUserAuthenticated = true;      
+    .then(() => {  
+      //window.location.reload();
     });    
   }
 
   public btnLogout_Click(): void {
     this.fb.logout()
     .then(() => {
-      this.isUserAuthenticated = false;      
+      this.sessionService.invalidateSession();     
     })
+  }
+
+  public isUserLoggedIn(): boolean{    
+    return !(this.user === null) && !(this.user === undefined)
   }
 
 }

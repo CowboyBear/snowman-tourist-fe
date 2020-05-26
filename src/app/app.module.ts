@@ -10,6 +10,7 @@ import { LocationService } from './services/location.service'
 import { HttpClientModule } from '@angular/common/http';
 import { FacebookModule } from 'ngx-facebook';
 import { AddLocationComponent } from './components/add-location/add-location.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { AddLocationComponent } from './components/add-location/add-location.com
     AppRoutingModule,
     FontAwesomeModule,
     HttpClientModule,
+    ReactiveFormsModule,
     FacebookModule.forRoot()
   ],
   providers: [    

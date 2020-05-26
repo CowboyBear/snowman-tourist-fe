@@ -12,8 +12,8 @@
       </ul>
     </div>
     <div class="col-2">
-      <div [hidden]="isUserAuthenticated" class="logout-button" (click)="btnLogin_Click()"><a>Login with Facebook</a></div>      
-      <div [hidden]="!isUserAuthenticated" class="logout-button" (click)="btnLogout_Click()"><a>Logout</a></div>
+      <div [hidden]="isUserLoggedIn()" class="logout-button" (click)="btnLogin_Click()"><a>Login with Facebook</a></div>      
+      <div [hidden]="!isUserLoggedIn()" class="logout-button" (click)="btnLogout_Click()"><a>Logout</a></div>
     </div>
   </div>
 </div>
