@@ -34,12 +34,14 @@ export class AppComponent {
   }
 
   private createUserSession(loginStatus: LoginStatus): void {
-    this.userService.get(loginStatus.authResponse.userID).subscribe((user) => {
-      user.accessToken = loginStatus.authResponse.accessToken
-      this.sessionService.createSession(user);
-    }, (error) => {
-      console.log("Error getting user information: ", error);
-    });
+    this.userService.get(loginStatus.authResponse.userID).subscribe(
+      (user) => {
+        user.accessToken = loginStatus.authResponse.accessToken
+        this.sessionService.createSession(user);
+      },
+      (error) => {
+        console.log("Error getting user information: ", error);
+      });
   }
 
   private initFbService(): void {

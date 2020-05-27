@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { LocationService } from 'src/app/services/location.service';
+import { SessionService } from 'src/app/services/session.service';
+import { User } from 'src/app/models/User';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-location',
@@ -9,11 +12,12 @@ import { LocationService } from 'src/app/services/location.service';
 })
 export class AddLocationComponent implements OnInit {
 
-  constructor(private locationService: LocationService) { }
+  constructor(private locationService: LocationService, private sessionService: SessionService, private router: Router) { }
 
   public locationForm: FormGroup;
   public txtName: FormControl = new FormControl('', Validators.required);
-  public txtAddress: FormControl = new FormControl('', Validators.required);;
+  public txtAddress: FormControl = new FormControl('', Validators.required);
+  private user: User;
 
   ngOnInit() {
     this.locationForm = new FormGroup({
@@ -21,6 +25,8 @@ export class AddLocationComponent implements OnInit {
       txtAddress: this.txtAddress,
       filePicture: new FormControl()
     });
+
+    this.user = this.sessionService.getUserFromSession();
   }
 
   public onFileSelect(event): void {
@@ -35,7 +41,7 @@ export class AddLocationComponent implements OnInit {
 
     this.locationService.post(formData).subscribe(
       (location)=>{
-        console.log("Location created: ", location);
+        this.router.navigate(['/locations']);
       },
       (error) => {
         console.log("Error while saving location: ", error);
@@ -52,7 +58,7 @@ export class AddLocationComponent implements OnInit {
     formData.append('Lat', "90");
     formData.append('Lng', "-90");
     formData.append('Picture', this.locationForm.get('filePicture').value);
-    formData.append('userId', '123abc');
+    formData.append('userId', this.user.id);
     
     return formData;
   }

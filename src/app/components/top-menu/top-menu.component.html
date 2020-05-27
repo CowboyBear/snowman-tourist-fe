@@ -8,7 +8,7 @@
     <div class="div col-8">
       <ul class="menu">
         <li routerLink="/locations" routerLinkActive="selected">Locations</li>
-        <li routerLink="/add-location" routerLinkActive="selected">Add new location</li>
+        <li [hidden]="!isUserLoggedIn()" routerLink="/add-location" routerLinkActive="selected">Add new location</li>
       </ul>
     </div>
     <div class="col-2">
