@@ -1,7 +1,7 @@
 <div class="col-12 row">
   <div class="col-3 my-2 d-flex justify-content-center" *ngFor="let location of locations">
     <div class="card" style="width: 18rem;">
-      <img [src]="location.picturePath != null ? location.picturePath : '/assets/img/default-location-img.png'" class="card-img-top" alt="">
+      <img [src]="getLocationPicturePath(location)" class="card-img-top" alt="">
       <div class="card-body">
         <h5 class="card-title">{{location.name}}</h5>
         <p class="card-text">{{location.address}}</p>        
