@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FacebookModule } from 'ngx-facebook';
 import { AddLocationComponent } from './components/add-location/add-location.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     FontAwesomeModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FacebookModule.forRoot()
+    FacebookModule.forRoot(),
+    GooglePlaceModule
   ],
   providers: [    
     LocationService
