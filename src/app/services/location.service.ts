@@ -36,6 +36,6 @@ export class LocationService {
     return new HttpParams()
       .set("latitude", address.geometry.location.lat().toString())
       .set("longitude", address.geometry.location.lng().toString())
-      .set("radius", "500");    
+      .set("radius", "5000");    
   }
 }

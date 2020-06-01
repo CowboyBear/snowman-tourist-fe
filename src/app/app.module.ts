@@ -12,13 +12,15 @@ import { FacebookModule } from 'ngx-facebook';
 import { AddLocationComponent } from './components/add-location/add-location.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
+import { LocationNameFilterPipe } from './pipes/location-name-filter.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     TopMenuComponent,
     LocationsPageComponent,
-    AddLocationComponent
+    AddLocationComponent,
+    LocationNameFilterPipe
   ],
   imports: [
     BrowserModule,

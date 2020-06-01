@@ -1,16 +1,25 @@
 <div class="col-12 row">
   <div class="col-12">
-    <div class="form-group form-inline">
-      <label class="col-2 col-form-label">Search for nearby places</label>
-      <input ngx-google-places-autocomplete class="form-control col-7" [(ngModel)]="txtNearbyLocations" #placesRef="ngx-places" (onAddressChange)="txtAddress_OnChange($event)" />
+    <div class="form-group form-inline">      
+      <div class="col-7 row" [hidden]="!isNearbySearch()">
+        <input ngx-google-places-autocomplete class="form-control col mx-0" [(ngModel)]="txtNearbyLocations" #placesRef="ngx-places" (onAddressChange)="txtAddress_OnChange($event)" />
+      </div>    
+      <div class="col-7 row" [hidden]="isNearbySearch()">
+        <input type="text" class="form-control col mx-0" [(ngModel)]="txtNameSearch" placeholder="Enter a location name">
+      </div>     
+      <div class="col-2">
+        <select class="form-control" [(ngModel)]="ddlSearchType" (change)="btnClearResults_Click()">
+          <option value="1">Search for nearby places</option>
+          <option value="2">Search by name</option>
+        </select>
+      </div>
       <div class="col-3">
-        <button type="submit" [hidden]="!IsSearchActive" (click)="btnClearResults_Click()" class="btn btn-danger">Clear Results</button>
-        <!-- <button type="submit" class="btn btn-info" [disabled]="!locationForm.valid">Submit</button> -->
+        <button type="submit" [hidden]="!IsSearchActive()" (click)="btnClearResults_Click()" class="btn btn-danger">Clear Results</button>        
       </div>
     </div>
   </div>
 
-  <div class="col-3 my-2 d-flex justify-content-center" *ngFor="let location of locationsToDisplay">
+  <div class="col-3 my-2 d-flex justify-content-center" *ngFor="let location of locationsToDisplay | locationNameFilter:txtNameSearch">
     <div class="card" style="width: 18rem;">
       <img [src]="getLocationPicturePath(location)" class="card-img-top" alt="">
       <div class="card-body">
