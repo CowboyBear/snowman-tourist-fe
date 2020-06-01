@@ -1,11 +1,22 @@
 <div class="col-12 row">
-  <div class="col-3 my-2 d-flex justify-content-center" *ngFor="let location of locations">
+  <div class="col-12">
+    <div class="form-group form-inline">
+      <label class="col-2 col-form-label">Search for nearby places</label>
+      <input ngx-google-places-autocomplete class="form-control col-7" [(ngModel)]="txtNearbyLocations" #placesRef="ngx-places" (onAddressChange)="txtAddress_OnChange($event)" />
+      <div class="col-3">
+        <button type="submit" [hidden]="!IsSearchActive" (click)="btnClearResults_Click()" class="btn btn-danger">Clear Results</button>
+        <!-- <button type="submit" class="btn btn-info" [disabled]="!locationForm.valid">Submit</button> -->
+      </div>
+    </div>
+  </div>
+
+  <div class="col-3 my-2 d-flex justify-content-center" *ngFor="let location of locationsToDisplay">
     <div class="card" style="width: 18rem;">
       <img [src]="getLocationPicturePath(location)" class="card-img-top" alt="">
       <div class="card-body">
         <h5 class="card-title">{{location.name}}</h5>
-        <p class="card-text">{{location.address}}</p>        
+        <p class="card-text">{{location.address}}</p>
       </div>
     </div>
-  </div>  
+  </div>
 </div>
